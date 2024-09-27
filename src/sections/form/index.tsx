@@ -6,6 +6,12 @@ import { useState } from "react"
 
 const Form = () => {
 
+    const [showForm, setShowForm] = useState(false);
+
+    const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setShowForm(event.target.value === 'nao');
+    }
+
     const [isValid, setValid] = useState(false)
 
     const handleButton = () => {
@@ -38,22 +44,27 @@ const Form = () => {
                     
                     <DivOptions>
                         <DivRadio>
-                            <Input htmlForID="sim" textLabel="Sim" type="radio" name="anonima"/>
+                            <Input htmlForID="sim" textLabel="Sim" type="radio" name="anonima" onChange={handleRadioChange} value="sim"/>
                         </DivRadio>
 
                         <DivRadio>
-                            <Input htmlForID="nao" textLabel="Não" type="radio" name="anonima"/>
+                            <Input htmlForID="nao" textLabel="Não" type="radio" name="anonima" onChange={handleRadioChange} value="nao"/>
                         </DivRadio>
                     </DivOptions>
                 </DivInput>
 
-                <DivInput>
-                    <Input htmlForID="nome" textLabel="Nome completo:" type="text" placeholder="ex: José Maria da Silva"/>
-                </DivInput>
+                {showForm && (
+                    <>
+                    <DivInput>
+                        <Input htmlForID="nome" textLabel="Nome completo:" type="text" placeholder="ex: José Maria da Silva"/>
+                    </DivInput>
 
-                <DivInput>
-                    <Input htmlForID="contato" textLabel="Telefone para contato:" type="text" placeholder="ex: +5511957683249"/>
-                </DivInput>
+                    <DivInput>
+                        <Input htmlForID="contato" textLabel="Telefone para contato:" type="text" placeholder="ex: +5511957683249"/>
+                    </DivInput>
+                    </>
+                )}
+                
             </DivForm>
 
             <Button onClick={handleButton}/>
