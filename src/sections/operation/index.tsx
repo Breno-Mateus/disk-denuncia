@@ -3,7 +3,7 @@ import Complaint from "../../assets/complaint.svg"
 
 const Operation = () => {
     return(
-        <OperationSection>
+        <OperationSection id="SectionOperation">
             <DivText>
                 <Title>Como Funciona</Title><br />
                 <Text>Nossa plataforma permite que você faça denúncias de forma segura e, se preferir, anônima. Basta descrever o incidente detalhadamente no formulário, incluindo informações como local e outros dados relevantes.</Text>

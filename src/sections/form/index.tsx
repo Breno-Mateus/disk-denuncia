@@ -5,7 +5,7 @@ import Button from "../../components/button"
 
 const Form = () => {
     return(
-        <FormSection>
+        <FormSection id="SectionForm">
             <Title>Formulário</Title>
 
             <DivForm>

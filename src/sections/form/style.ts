@@ -9,12 +9,16 @@ export const FormSection = styled.section`
     gap: 3rem;
 
     padding: 4rem;
+
+    width: 100%;
 `
 
 export const DivForm = styled.div`
     display: flex;
+    align-items: center;
     flex-direction: column;
     gap: 1rem;
+    width: 100%;
 `
 
 export const Title = styled.h2`
@@ -28,7 +32,7 @@ export const DivInput = styled.div`
     flex-direction: column;
     gap: .5rem;
 
-    width: 35rem;
+    width: 80%;
 `
 
 export const DivOptions = styled.div`
