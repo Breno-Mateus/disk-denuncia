@@ -1,8 +1,9 @@
 import { ButtonStyle } from "./style"
+import IButtonProps from "./type"
 
-const Button = () => {
+const Button = ({onClick} : IButtonProps) => {
     return(
-        <ButtonStyle>Enviar</ButtonStyle>
+        <ButtonStyle onClick={onClick}>Enviar</ButtonStyle>
     )
 }
 

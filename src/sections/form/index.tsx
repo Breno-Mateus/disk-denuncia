@@ -1,9 +1,17 @@
-import { FormSection, Title, DivInput, DivForm, DivRadio, DivOptions } from "./style"
+import { FormSection, Title, DivInput, DivForm, DivRadio, DivOptions, DivMessage, Message } from "./style"
 import Input from "../../components/input"
 import Textarea from "../../components/textarea"
 import Button from "../../components/button"
+import { useState } from "react"
 
 const Form = () => {
+
+    const [isValid, setValid] = useState(false)
+
+    const handleButton = () => {
+        setValid(true)
+    }
+
     return(
         <FormSection id="SectionForm">
             <Title>Formulário</Title>
@@ -48,7 +56,13 @@ const Form = () => {
                 </DivInput>
             </DivForm>
 
-            <Button />            
+            <Button onClick={handleButton}/>
+
+            {isValid && (
+                <DivMessage>
+                    <Message>Formulário enviado com sucesso!</Message>
+                </DivMessage>
+            )}            
         </FormSection>
     )
 }

@@ -46,3 +46,13 @@ export const DivRadio = styled.div`
     align-items: center;
     gap: .5rem;
 `
+
+export const DivMessage = styled.div`
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    border-radius: 5px;
+`
+
+export const Message = styled.p`
+    color: green;
+`
