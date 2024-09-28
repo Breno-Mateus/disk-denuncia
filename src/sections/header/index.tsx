@@ -1,4 +1,4 @@
-import { HeaderStyle, IconMenu, ImageLogo, HeaderStyleMobile, DivLogosMobile } from "./style"
+import { HeaderStyle, DivLogos, IconMenu, ImageLogo, HeaderStyleMobile } from "./style"
 import Logo from "../../assets/logo.svg"
 import { useState } from "react"
 import Hamburger from 'hamburger-react'
@@ -14,21 +14,21 @@ const Header = () => {
 
     return(
         <>
-            <HeaderStyle>
-                <ImageLogo src={Logo}/>
-                
-                <IconMenu> <Hamburger toggled={isOpen} toggle={setOpen} /> </IconMenu>
+            <HeaderStyle isOpen={isOpen}>
+                <DivLogos>
+                    <ImageLogo src={Logo}/>
+                    
+                    <IconMenu> <Hamburger toggled={isOpen} toggle={setOpen} /> </IconMenu>
+                </DivLogos>
+
+                {isOpen && 
+                    <HeaderStyleMobile>
+                        <Menu onClick={handleMenuItemClick}/>
+                    </HeaderStyleMobile>
+                }
             </HeaderStyle>
 
-            {isOpen && 
-            <HeaderStyleMobile>
-                <DivLogosMobile>
-                    <ImageLogo src={Logo}/>
-                </DivLogosMobile>
-
-                <Menu onClick={handleMenuItemClick}/>
-            </HeaderStyleMobile>
-            }
+            
         </>
     )
 }

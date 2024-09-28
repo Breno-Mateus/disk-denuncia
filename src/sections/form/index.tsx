@@ -1,81 +1,106 @@
-import { FormSection, Title, DivInput, DivForm, DivRadio, DivOptions, DivMessage, Message } from "./style"
-import Input from "../../components/input"
-import Textarea from "../../components/textarea"
-import Button from "../../components/button"
-import { useState } from "react"
+import { useState } from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { FormSection, Title, DivInput, DivForm, DivRadio, DivOptions, DivMessage, Message, InputStyle, TextareaStyle, ButtonStyle, MessageError } from "./style";
+
+interface FormData {
+    title: string;
+    description: string;
+    location: string;
+    date: string;
+    name: string;
+    phone: string;
+}
 
 const Form = () => {
-
     const [showForm, setShowForm] = useState(false);
+    const [isValid, setValid] = useState(false);
 
     const handleRadioChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setShowForm(event.target.value === 'nao');
-    }
+        setShowForm(event.target.value === "nao");
+    };
 
-    const [isValid, setValid] = useState(false)
+    const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
 
-    const handleButton = () => {
-        setValid(true)
-    }
+    const onSubmit: SubmitHandler<FormData> = (data) => {
+        console.log(data);
+        setValid(true);
+    };
 
-    return(
-        <FormSection id="SectionForm">
+    return (
+        <FormSection id="SectionForm" onSubmit={handleSubmit(onSubmit)}>
             <Title>Formulário</Title>
 
             <DivForm>
                 <DivInput>
-                    <Input htmlForID="denuncia" textLabel="Título da denúncia:" type="text" placeholder="ex: Assédio no local de trabalho"/>
+                    <label htmlFor="denuncia">Título da denúncia:</label>
+                    <InputStyle id="denuncia" type="text" placeholder="ex: Assédio no local de trabalho" {...register("title", { required: true })}
+                    />
+                    {errors?.title && <MessageError className="error-message">O campo de título é obrigatório.</MessageError>}
                 </DivInput>
 
                 <DivInput>
-                    <Textarea htmlForID="descricao" textLabel="Descrição da denúncia:" placeholder="Descreva os detalhes do incidente, incluindo data, local e qualquer outra informação relevante."/>
+                    <label htmlFor="descricao">Descrição da denúncia:</label>
+                    <TextareaStyle id="descricao" placeholder="Descreva os detalhes do incidente..." {...register("description", { required: true })} />
+                    {errors?.description && <MessageError className="error-message">O campo de descrição é obrigatória.</MessageError>}
                 </DivInput>
 
                 <DivInput>
-                    <Input htmlForID="local" textLabel="Local do incidente:" type="text" placeholder="ex: Escritório central, 5º andar, sala 502 - Rua João Silva, 123, Bairro Centro, Cidade XYZ."/>
+                    <label htmlFor="local">Local do incidente:</label>
+                    <InputStyle id="local" type="text" placeholder="ex: Escritório central, 5º andar, sala 502..." {...register("location", { required: true })} />
+                    {errors?.location && <MessageError className="error-message">O campo de local é obrigatório.</MessageError>}
                 </DivInput>
 
                 <DivInput>
-                    <Input htmlForID="data" textLabel="Data do incidente:" type="date"/>
+                    <label htmlFor="data">Data do incidente:</label>
+                    <InputStyle id="data" type="date" {...register("date", { required: true })} />
+                    {errors?.date && <MessageError className="error-message">A data é obrigatória.</MessageError>}
                 </DivInput>
 
                 <DivInput>
                     <p>Deseja enviar de forma anônima?</p>
-                    
                     <DivOptions>
                         <DivRadio>
-                            <Input htmlForID="sim" textLabel="Sim" type="radio" name="anonima" onChange={handleRadioChange} value="sim"/>
+                            <label>
+                                <input type="radio" name="anonima" onChange={handleRadioChange} value="sim" />
+                                Sim
+                            </label>
                         </DivRadio>
-
+                        
                         <DivRadio>
-                            <Input htmlForID="nao" textLabel="Não" type="radio" name="anonima" onChange={handleRadioChange} value="nao"/>
+                            <label>
+                                <input type="radio" name="anonima" onChange={handleRadioChange} value="nao" />
+                                Não
+                            </label>
                         </DivRadio>
                     </DivOptions>
                 </DivInput>
 
                 {showForm && (
                     <>
-                    <DivInput>
-                        <Input htmlForID="nome" textLabel="Nome completo:" type="text" placeholder="ex: José Maria da Silva"/>
-                    </DivInput>
+                        <DivInput>
+                            <label htmlFor="nome">Nome completo:</label>
+                            <InputStyle id="nome" type="text" placeholder="ex: José Maria da Silva" {...register("name", { required: true })} />
+                            {errors?.name && <MessageError className="error-message">O campo de nome é obrigatório.</MessageError>}
+                        </DivInput>
 
-                    <DivInput>
-                        <Input htmlForID="contato" textLabel="Telefone para contato:" type="text" placeholder="ex: +5511957683249"/>
-                    </DivInput>
+                        <DivInput>
+                            <label htmlFor="contato">Telefone para contato:</label>
+                            <InputStyle id="contato" type="text" placeholder="ex: +5511957683249" {...register("phone", { required: true })} />
+                            {errors?.phone && <MessageError className="error-message">O campo de telefone é obrigatório.</MessageError>}
+                        </DivInput>
                     </>
                 )}
-                
+
+                <ButtonStyle type="submit">Enviar</ButtonStyle>
+
+                {isValid && (
+                    <DivMessage>
+                        <Message>Formulário enviado com sucesso!</Message>
+                    </DivMessage>
+                )}
             </DivForm>
-
-            <Button onClick={handleButton}/>
-
-            {isValid && (
-                <DivMessage>
-                    <Message>Formulário enviado com sucesso!</Message>
-                </DivMessage>
-            )}            
         </FormSection>
-    )
-}
+    );
+};
 
-export default Form
+export default Form;

@@ -7,9 +7,6 @@ export const MenuNav = styled.div`
     align-items: center;
     flex-direction: column;
     gap: 3rem;
-
-    height: 100vh;
-    width: 100%;
 `
 
 export const LinkStyled = styled(Link)`

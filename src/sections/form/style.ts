@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const FormSection = styled.section`
+export const FormSection = styled.form`
     background-color: #283747;
 
     display: flex;
@@ -17,7 +17,7 @@ export const DivForm = styled.div`
     display: flex;
     align-items: center;
     flex-direction: column;
-    gap: 1rem;
+    gap: 2rem;
     width: 100%;
 `
 
@@ -55,4 +55,42 @@ export const DivMessage = styled.div`
 
 export const Message = styled.p`
     color: green;
+`
+
+export const InputStyle = styled.input`
+    color: #fff;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    height: 3rem;
+    padding: 1rem;
+    font-size: .9rem;
+`
+
+export const TextareaStyle = styled.textarea`
+    height: 7rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    font-size: .9rem;
+    border: none;
+    border-radius: 5px;
+`
+
+export const ButtonStyle = styled.button`
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 6rem;
+    height: 3rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 800;
+
+    &:hover{
+        background-color: rgba(0, 0, 0, 0.4);
+        cursor: pointer;
+    }
+`
+
+export const MessageError = styled.p`
+    color: red;
+    font-size: .8rem;
 `
