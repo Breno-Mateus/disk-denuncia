@@ -1,50 +1,24 @@
-# React + TypeScript + Vite
+# Disk Denúncia
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Um aplicativo simples de denúncia online, onde os usuários podem relatar incidentes de forma anônima ou identificada. Este projeto foi desenvolvido com React e `Typescript`, utilizando manipulação de estado para controlar a lógica e a exibição dos componentes, que foram estilizados utilizando o `styled-components`, como o menu hambúrguer e o formulário de denúncia.
 
-Currently, two official plugins are available:
+## Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Denúncia anônima ou identificada:** Os usuários podem escolher entre enviar suas denúncias de forma anônima ou fornecer informações de contato.
+- **Formulário Dinâmico:** O formulário exibe campos adicionais se o usuário optar por não enviar a denúncia anonimamente.
+- **Menu Hamburguer Dinâmico:** Um menu responsivo que aparece e desaparece conforme o estado do menu.
+- **Notificações de Sucesso:** Uma mensagem de confirmação aparece após o envio bem-sucedido do formulário.
 
-## Expanding the ESLint configuration
+## Tecnologias Utilizadas
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **React:** Biblioteca JavaScript para construção de interfaces de usuário.
+- **TypeScript:** Tipagem estática para JavaScript, garantindo mais segurança no desenvolvimento.
+- **Styled-components:** Biblioteca para estilização de componentes em React.
+- **Hooks do React:** Manipulação de estado com `useState`.
+- **React hook-form:** Para a manipulação dos formulários.
+- **React-scroll:** Para a navegação nas seções.
+- **hamburger-react":** Biblioteca para a criação de menu hambúrguer.
 
-- Configure the top-level `parserOptions` property like this:
+## Licença
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+Este projeto está licenciado sob a MIT License.
